@@ -1,151 +1,104 @@
-/*    WEATHER  APP
-NAME -> JANANI S V
-COLLEGE NAME -> VIVEKANADHA COLLEGE OF ENGINEERING FOR WOMEN
+/*Weather report
 
-DATA USED: 
-   LOCATION 
-   
-METHODS USED:
-   CLASS&OBJECTS
-   IF 
-   ELSE IF 
-   SWITCH
+P.Ashmitha
+Vivekanandha College of engineering for Women,Tiruchengode,Namakkal
+
 */
 #include <iostream>
-
+#include <string>
 using namespace std;
 
-class Weather
-{
-    public:
-    int c,choice;
-    string loc;
-    string s1="Dry area";
-    string s2="Hill stations";
-    string s3="Delta";
-    void getdata()
-{
-   cout<<"\nWelcome to weather app!!!";
-   cout<<"\n\nLocation\nDry area\nHill stations\nDelta\n";
-   cin>>loc;
-}
-};
-class Today:public Weather
-{
-    public:
-    void printdata1(){
-        cout<<"\n\nToday report:";
-    if(c=loc.compare(s1))
-    {
-        cout<<"\nTemparatur:32'c\nSo hot!!\nHeat waves\nDry";
-    }
-    else if(c=loc.compare(s2))
-    {
-        cout<<"\nTemperature:15'c\nSo cool!!\nRainy\nThunderstrom";
-    }
-    else if(c=loc.compare(s3))
-    {
-        cout<<"\nTemperature:22'c\nNot So hot!!\nCloudy";
-    }
-     else
-    {
-        cout<<"\nYou are in out of station";
-    }
-    }
-};
-class Yesterday:public Weather
-{
-    public:
-    void printdata2(){
-        cout<<"\n\nYesterday report:";
-    if(c=loc.compare(s1))
-    {
-        cout<<"\nTemparatur:37'c\nSo hot!!\nHeat waves\nDry";
-    }
-    else if(c=loc.compare(s2))
-    {
-        cout<<"\nTemperature:20'c\nNot So cool!!\nRainy\nThunderstrom";
-    }
-    else if(c=loc.compare(s3))
-    {
-        cout<<"\nTemperature:26'c\nNot So hot!!\nCloudy";
-    }
-    else
-    {
-        cout<<"\nYou are in out of station";
-    }
-    }  
-};
-class Tomorrow:public Weather
-{
-    public:
-    void printdata3(){
-        cout<<"\n\nTomorrow report:";
-    if(c=loc.compare(s1))
-    {
-        cout<<"\nTemparatur:33'c\nSo hot!!\nHeat waves\nDry";
-    }
-    else if(c=loc.compare(s2))
-    {
-        cout<<"\nTemperature:20'c\nSo cool!!\nRainy\nThunderstrom";
-    }
-    else if(c=loc.compare(s3))
-    {
-        cout<<"\nTemperature:27'c\nNot So hot!!\nCloudy";
-    }
-    else
-    {
-        cout<<"\nYou are in out of station";
-    }
-    }  
-};
-class Weekly:public Weather
-{
-    public:
-    void printdata4(){
-        cout<<"\n\nWeekly report:\nEnter your choice(1-6):";
-        cin>>choice;
-    switch(choice)
-    {
-        case 1:
-        cout<<"\nMonday\nHeat waves!!";
-        break;
-        case 2:
-        cout<<"\nTuesday\nDry!!";
-        break;
-        case 3:
-        cout<<"\nWednesday\nSunny!!";
-        break;
-        case 4:
-        cout<<"\nThursday\nCloudy!!";
-        break;
-        case 5:
-        cout<<"\nFriday\nCold breeze!!";
-        break;
-        case 6:
-        cout<<"\nSaturday\nRainy!!";
-        break;
-        default:
-        cout<<"\nSunday\nThunderstorm!!";
-        break;
-    }  
-        
-    }
-};
-int main()
-{
-  Weather w1;
-  Today t1;
-  Yesterday y1;
-  Tomorrow tw;
-  Weekly w2;
-  w1.getdata();
-  t1.printdata1();
-  y1.printdata2();
-  tw.printdata3();
-  w2.printdata4();
+class WeatherReport {
+protected:
+    string weather;
 
+public:
+    void setWeather(string w) {
+        weather = w;
+    }
+
+    void displayReport() {
+        cout << "Weather: " << weather << endl;
+    }
+};
+
+class Today : public WeatherReport {
+public:
+    void showTodayReport() {
+        setWeather("Cloudy");
+        displayReport();
+    }
+};
+
+class Yesterday : public WeatherReport {
+public:
+    void showYesterdayReport() {
+        setWeather("Dry");
+        displayReport();
+    }
+};
+
+class Tomorrow : public WeatherReport {
+public:
+    void showTomorrowReport() {
+        setWeather("Sunny");
+        displayReport();
+    }
+};
+
+class Weekly : public WeatherReport {
+public:
+    void showWeeklyReport() {
+        setWeather("Rain, Thunderstorm, Heatwaves");
+        displayReport();
+    }
+};
+
+class Monthly : public WeatherReport {
+public:
+    void showMonthlyReport() {
+        setWeather("Temperature, Rain Possibility, Humidity");
+        displayReport();
+    }
+};
+
+int main() {
+    Today today;
+    Yesterday yesterday;
+    Tomorrow tomorrow;
+    Weekly weekly;
+    Monthly monthly;
+    int choice;
+    cout << "Choose an option:" << endl;
+    cout << "1. Today's weather" << endl;
+    cout << "2. Yesterday's weather" << endl;
+    cout << "3. Tomorrow's weather" << endl;
+    cout << "4. Weekly weather" << endl;
+    cout << "5. Monthly weather" << endl;
+    cout << "Enter your choice: ";
+    cin >> choice;
+
+    switch (choice) {
+        case 1:
+    cout << "Today's Weather Report:" << endl;
+    today.showTodayReport();
+    break;
+    case 2:
+    cout << "\nYesterday's Weather Report:" << endl;
+    yesterday.showYesterdayReport();
+    break;
+    case 3:
+    cout << "\nTomorrow's Weather Report:" << endl;
+    tomorrow.showTomorrowReport();
+    break;
+    case 4:
+    cout << "\nWeekly Weather Report:" << endl;
+    weekly.showWeeklyReport();
+    break;
+    case 5:
+    cout << "\nMonthly Weather Report:" << endl;
+    monthly.showMonthlyReport();
+    break;
+    }
     return 0;
 }
-
-
